@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block title %} Edit Blog Posts {% endblock %}
+{% block content %}
+
+{%  if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Update Posts</h1>
+        <br>
+
+        <div class="form-group">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+
+            </form>
+        </div>
+    {% else %}
+        You do not have authorization to be here.
+    {% endif %}
+{% else %}
+
+    You do not have authorization to be here.
+
+{% endif %}
+
+
+{% endblock %}
